@@ -20,48 +20,54 @@
 #include "lidar_localization/models/scan_adjust/distortion_adjust.hpp"
 
 namespace lidar_localization {
-class DataPretreatFlow {
-  public:
-    DataPretreatFlow(ros::NodeHandle& nh, std::string cloud_topic);
+    class DataPretreatFlow {
+    public:
+        DataPretreatFlow(ros::NodeHandle &nh, std::string cloud_topic);
 
-    bool Run();
+        bool Run();
 
-  private:
-    bool ReadData();
-    bool InitCalibration();
-    bool InitGNSS();
-    bool HasData();
-    bool ValidData();
-    bool TransformData();
-    bool PublishData();
+    private:
+        bool ReadData();
 
-  private:
-    // subscriber
-    std::shared_ptr<CloudSubscriber> cloud_sub_ptr_;
-    std::shared_ptr<IMUSubscriber> imu_sub_ptr_;
-    std::shared_ptr<VelocitySubscriber> velocity_sub_ptr_;
-    std::shared_ptr<GNSSSubscriber> gnss_sub_ptr_;
-    std::shared_ptr<TFListener> lidar_to_imu_ptr_;
-    // publisher
-    std::shared_ptr<CloudPublisher> cloud_pub_ptr_;
-    std::shared_ptr<OdometryPublisher> gnss_pub_ptr_;
-    // models
-    std::shared_ptr<DistortionAdjust> distortion_adjust_ptr_;
+        bool InitCalibration();
 
-    Eigen::Matrix4f lidar_to_imu_ = Eigen::Matrix4f::Identity();
+        bool InitGNSS();
 
-    std::deque<CloudData> cloud_data_buff_;
-    std::deque<IMUData> imu_data_buff_;
-    std::deque<VelocityData> velocity_data_buff_;
-    std::deque<GNSSData> gnss_data_buff_;
+        bool HasData();
 
-    CloudData current_cloud_data_;
-    IMUData current_imu_data_;
-    VelocityData current_velocity_data_;
-    GNSSData current_gnss_data_;
+        bool ValidData();
 
-    Eigen::Matrix4f gnss_pose_ = Eigen::Matrix4f::Identity();
-};
+        bool TransformData();
+
+        bool PublishData();
+
+    private:
+        // subscriber
+        std::shared_ptr<CloudSubscriber> cloud_sub_ptr_;
+        std::shared_ptr<IMUSubscriber> imu_sub_ptr_;
+        std::shared_ptr<VelocitySubscriber> velocity_sub_ptr_;
+        std::shared_ptr<GNSSSubscriber> gnss_sub_ptr_;
+        std::shared_ptr<TFListener> lidar_to_imu_ptr_;
+        // publisher
+        std::shared_ptr<CloudPublisher> cloud_pub_ptr_;
+        std::shared_ptr<OdometryPublisher> gnss_pub_ptr_;
+        // models
+        std::shared_ptr<DistortionAdjust> distortion_adjust_ptr_;
+
+        Eigen::Matrix4f lidar_to_imu_ = Eigen::Matrix4f::Identity();
+
+        std::deque<CloudData> cloud_data_buff_;
+        std::deque<IMUData> imu_data_buff_;
+        std::deque<VelocityData> velocity_data_buff_;
+        std::deque<GNSSData> gnss_data_buff_;
+
+        CloudData current_cloud_data_;
+        IMUData current_imu_data_;
+        VelocityData current_velocity_data_;
+        GNSSData current_gnss_data_;
+
+        Eigen::Matrix4f gnss_pose_ = Eigen::Matrix4f::Identity();
+    };
 }
 
 #endif

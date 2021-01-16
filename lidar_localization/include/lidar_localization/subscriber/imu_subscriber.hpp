@@ -16,21 +16,23 @@
 #include "lidar_localization/sensor_data/imu_data.hpp"
 
 namespace lidar_localization {
-class IMUSubscriber {
-  public:
-    IMUSubscriber(ros::NodeHandle& nh, std::string topic_name, size_t buff_size);
-    IMUSubscriber() = default;
-    void ParseData(std::deque<IMUData>& deque_imu_data);
+    class IMUSubscriber {
+    public:
+        IMUSubscriber(ros::NodeHandle &nh, std::string topic_name, size_t buff_size);
 
-  private:
-    void msg_callback(const sensor_msgs::ImuConstPtr& imu_msg_ptr);
+        IMUSubscriber() = default;
 
-  private:
-    ros::NodeHandle nh_;
-    ros::Subscriber subscriber_;
-    std::deque<IMUData> new_imu_data_;
+        void ParseData(std::deque<IMUData> &deque_imu_data);
 
-    std::mutex buff_mutex_; 
-};
+    private:
+        void msg_callback(const sensor_msgs::ImuConstPtr &imu_msg_ptr);
+
+    private:
+        ros::NodeHandle nh_;
+        ros::Subscriber subscriber_;
+        std::deque<IMUData> new_imu_data_;
+
+        std::mutex buff_mutex_;
+    };
 }
 #endif

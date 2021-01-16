@@ -265,7 +265,7 @@ Visualization Manager:
       Tree:
         map:
           vehicle_link:
-            {}
+            { }
       Update Interval: 0
       Value: true
   Enabled: true

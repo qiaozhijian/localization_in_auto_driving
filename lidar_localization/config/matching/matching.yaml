@@ -11,7 +11,7 @@ frame_filter: voxel_filter # 选择当前帧点云滤波方法，目前支持：
 # 局部地图
 # 局部地图从全局地图切割得到，此处box_filter_size是切割区间
 # 参数顺序是min_x, max_x, min_y, max_y, min_z, max_z
-box_filter_size: [-150.0, 150.0, -150.0, 150.0, -150.0, 150.0]
+box_filter_size: [ -150.0, 150.0, -150.0, 150.0, -150.0, 150.0 ]
 local_map_filter: voxel_filter # 选择滑窗地图点云滤波方法，目前支持：voxel_filter、no_filter
 
 # 全局地图
@@ -21,15 +21,15 @@ global_map_filter: voxel_filter # 选择滑窗地图点云滤波方法，目前�
 # 各配置选项对应参数
 ## 匹配相关参数
 NDT:
-    res : 1.0
-    step_size : 0.1
-    trans_eps : 0.01
-    max_iter : 30
+  res: 1.0
+  step_size: 0.1
+  trans_eps: 0.01
+  max_iter: 30
 ## 滤波相关参数
 voxel_filter:
-    global_map:
-        leaf_size: [0.9, 0.9, 0.9]
-    local_map:
-        leaf_size: [0.5, 0.5, 0.5]
-    frame:
-        leaf_size: [1.5, 1.5, 1.5]
+  global_map:
+    leaf_size: [ 0.9, 0.9, 0.9 ]
+  local_map:
+    leaf_size: [ 0.5, 0.5, 0.5 ]
+  frame:
+    leaf_size: [ 1.5, 1.5, 1.5 ]

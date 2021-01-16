@@ -33,9 +33,9 @@
 #ifndef EIGEN_SELFADJOINT_MATRIX_MATRIX_MKL_H
 #define EIGEN_SELFADJOINT_MATRIX_MATRIX_MKL_H
 
-namespace Eigen { 
+namespace Eigen {
 
-namespace internal {
+    namespace internal {
 
 
 /* Optimized selfadjoint matrix * matrix (?SYMM/?HEMM) product */
@@ -159,10 +159,13 @@ struct product_selfadjoint_matrix<EIGTYPE,Index,LhsStorageOrder,true,ConjugateLh
   } \
 };
 
-EIGEN_MKL_SYMM_L(double, double, d, d)
-EIGEN_MKL_SYMM_L(float, float, f, s)
-EIGEN_MKL_HEMM_L(dcomplex, MKL_Complex16, cd, z)
-EIGEN_MKL_HEMM_L(scomplex, MKL_Complex8, cf, c)
+        EIGEN_MKL_SYMM_L(double, double, d, d)
+
+        EIGEN_MKL_SYMM_L(float, float, f, s)
+
+        EIGEN_MKL_HEMM_L(dcomplex, MKL_Complex16, cd, z)
+
+        EIGEN_MKL_HEMM_L(scomplex, MKL_Complex8, cf, c)
 
 
 /* Optimized matrix * selfadjoint matrix (?SYMM/?HEMM) product */
@@ -283,12 +286,15 @@ struct product_selfadjoint_matrix<EIGTYPE,Index,LhsStorageOrder,false,ConjugateL
   } \
 };
 
-EIGEN_MKL_SYMM_R(double, double, d, d)
-EIGEN_MKL_SYMM_R(float, float, f, s)
-EIGEN_MKL_HEMM_R(dcomplex, MKL_Complex16, cd, z)
-EIGEN_MKL_HEMM_R(scomplex, MKL_Complex8, cf, c)
+        EIGEN_MKL_SYMM_R(double, double, d, d)
 
-} // end namespace internal
+        EIGEN_MKL_SYMM_R(float, float, f, s)
+
+        EIGEN_MKL_HEMM_R(dcomplex, MKL_Complex16, cd, z)
+
+        EIGEN_MKL_HEMM_R(scomplex, MKL_Complex8, cf, c)
+
+    } // end namespace internal
 
 } // end namespace Eigen
 

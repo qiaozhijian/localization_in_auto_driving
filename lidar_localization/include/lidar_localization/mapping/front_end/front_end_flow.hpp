@@ -13,30 +13,34 @@
 #include "lidar_localization/mapping/front_end/front_end.hpp"
 
 namespace lidar_localization {
-class FrontEndFlow {
-  public:
-    FrontEndFlow(ros::NodeHandle& nh, std::string cloud_topic, std::string odom_topic);
+    class FrontEndFlow {
+    public:
+        FrontEndFlow(ros::NodeHandle &nh, std::string cloud_topic, std::string odom_topic);
 
-    bool Run();
+        bool Run();
 
-  private:
-    bool ReadData();
-    bool HasData();
-    bool ValidData();
-    bool UpdateLaserOdometry();
-    bool PublishData();
+    private:
+        bool ReadData();
 
-  private:
-    std::shared_ptr<CloudSubscriber> cloud_sub_ptr_;
-    std::shared_ptr<OdometryPublisher> laser_odom_pub_ptr_;
-    std::shared_ptr<FrontEnd> front_end_ptr_;
+        bool HasData();
 
-    std::deque<CloudData> cloud_data_buff_;
+        bool ValidData();
 
-    CloudData current_cloud_data_;
+        bool UpdateLaserOdometry();
 
-    Eigen::Matrix4f laser_odometry_ = Eigen::Matrix4f::Identity();
-};
+        bool PublishData();
+
+    private:
+        std::shared_ptr<CloudSubscriber> cloud_sub_ptr_;
+        std::shared_ptr<OdometryPublisher> laser_odom_pub_ptr_;
+        std::shared_ptr<FrontEnd> front_end_ptr_;
+
+        std::deque<CloudData> cloud_data_buff_;
+
+        CloudData current_cloud_data_;
+
+        Eigen::Matrix4f laser_odometry_ = Eigen::Matrix4f::Identity();
+    };
 }
 
 #endif

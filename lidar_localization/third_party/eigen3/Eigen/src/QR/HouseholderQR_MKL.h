@@ -36,9 +36,9 @@
 
 #include "../Core/util/MKL_support.h"
 
-namespace Eigen { 
+namespace Eigen {
 
-namespace internal {
+    namespace internal {
 
 /** \internal Specialization for the data types supported by MKL */
 
@@ -58,12 +58,15 @@ struct householder_qr_inplace_blocked<MatrixQR, HCoeffs, EIGTYPE, true> \
   } \
 };
 
-EIGEN_MKL_QR_NOPIV(double, double, d)
-EIGEN_MKL_QR_NOPIV(float, float, s)
-EIGEN_MKL_QR_NOPIV(dcomplex, MKL_Complex16, z)
-EIGEN_MKL_QR_NOPIV(scomplex, MKL_Complex8, c)
+        EIGEN_MKL_QR_NOPIV(double, double, d)
 
-} // end namespace internal
+        EIGEN_MKL_QR_NOPIV(float, float, s)
+
+        EIGEN_MKL_QR_NOPIV(dcomplex, MKL_Complex16, z)
+
+        EIGEN_MKL_QR_NOPIV(scomplex, MKL_Complex8, c)
+
+    } // end namespace internal
 
 } // end namespace Eigen
 

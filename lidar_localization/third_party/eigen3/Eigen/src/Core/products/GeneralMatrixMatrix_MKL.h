@@ -33,9 +33,9 @@
 #ifndef EIGEN_GENERAL_MATRIX_MATRIX_MKL_H
 #define EIGEN_GENERAL_MATRIX_MATRIX_MKL_H
 
-namespace Eigen { 
+namespace Eigen {
 
-namespace internal {
+    namespace internal {
 
 /**********************************************************************
 * This file implements general matrix-matrix multiplication using BLAS
@@ -108,12 +108,15 @@ static void run(Index rows, Index cols, Index depth, \
   MKLPREFIX##gemm(&transa, &transb, &m, &n, &k, &alpha_, (const MKLTYPE*)a, &lda, (const MKLTYPE*)b, &ldb, &beta_, (MKLTYPE*)res, &ldc); \
 }};
 
-GEMM_SPECIALIZATION(double,   d,  double,        d)
-GEMM_SPECIALIZATION(float,    f,  float,         s)
-GEMM_SPECIALIZATION(dcomplex, cd, MKL_Complex16, z)
-GEMM_SPECIALIZATION(scomplex, cf, MKL_Complex8,  c)
+        GEMM_SPECIALIZATION(double, d, double, d)
 
-} // end namespase internal
+        GEMM_SPECIALIZATION(float, f, float, s)
+
+        GEMM_SPECIALIZATION(dcomplex, cd, MKL_Complex16, z)
+
+        GEMM_SPECIALIZATION(scomplex, cf, MKL_Complex8, c)
+
+    } // end namespase internal
 
 } // end namespace Eigen
 

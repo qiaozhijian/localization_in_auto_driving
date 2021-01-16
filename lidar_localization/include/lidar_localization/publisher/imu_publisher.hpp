@@ -10,22 +10,23 @@
 #include "lidar_localization/sensor_data/imu_data.hpp"
 
 namespace lidar_localization {
-class IMUPublisher {
-  public:
-    IMUPublisher(ros::NodeHandle& nh,
-                 std::string topic_name,
-                 size_t buff_size,
-                 std::string frame_id);
-    IMUPublisher() = default;
+    class IMUPublisher {
+    public:
+        IMUPublisher(ros::NodeHandle &nh,
+                     std::string topic_name,
+                     size_t buff_size,
+                     std::string frame_id);
 
-    void Publish(IMUData imu_data);
+        IMUPublisher() = default;
 
-    bool HasSubscribers();
+        void Publish(IMUData imu_data);
 
-  private:
-    ros::NodeHandle nh_;
-    ros::Publisher publisher_;
-    std::string frame_id_;
-};
-} 
+        bool HasSubscribers();
+
+    private:
+        ros::NodeHandle nh_;
+        ros::Publisher publisher_;
+        std::string frame_id_;
+    };
+}
 #endif

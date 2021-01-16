@@ -11,27 +11,30 @@
 #include "lidar_localization/models/cloud_filter/cloud_filter_interface.hpp"
 
 namespace lidar_localization {
-class BoxFilter: public CloudFilterInterface {
-  public:
-    BoxFilter(YAML::Node node);
-    BoxFilter() = default;
+    class BoxFilter : public CloudFilterInterface {
+    public:
+        BoxFilter(YAML::Node node);
 
-    bool Filter(const CloudData::CLOUD_PTR& input_cloud_ptr, CloudData::CLOUD_PTR& filtered_cloud_ptr) override;
+        BoxFilter() = default;
 
-    void SetSize(std::vector<float> size);
-    void SetOrigin(std::vector<float> origin);
-    std::vector<float> GetEdge();
+        bool Filter(const CloudData::CLOUD_PTR &input_cloud_ptr, CloudData::CLOUD_PTR &filtered_cloud_ptr) override;
 
-  private:
-    void CalculateEdge();
+        void SetSize(std::vector<float> size);
 
-  private:
-    pcl::CropBox<CloudData::POINT> pcl_box_filter_;
+        void SetOrigin(std::vector<float> origin);
 
-    std::vector<float> origin_;
-    std::vector<float> size_;
-    std::vector<float> edge_;
-};
+        std::vector<float> GetEdge();
+
+    private:
+        void CalculateEdge();
+
+    private:
+        pcl::CropBox<CloudData::POINT> pcl_box_filter_;
+
+        std::vector<float> origin_;
+        std::vector<float> size_;
+        std::vector<float> edge_;
+    };
 }
 
 #endif 

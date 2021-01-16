@@ -14,14 +14,17 @@
 #include <Eigen/Dense>
 
 namespace lidar_localization {
-class TFBroadCaster {
-  public:
-    TFBroadCaster(std::string frame_id, std::string child_frame_id);
-    TFBroadCaster() = default;
-    void SendTransform(Eigen::Matrix4f pose, double time);
-  protected:
-    tf::StampedTransform transform_;
-    tf::TransformBroadcaster broadcaster_;
-};
+    class TFBroadCaster {
+    public:
+        TFBroadCaster(std::string frame_id, std::string child_frame_id);
+
+        TFBroadCaster() = default;
+
+        void SendTransform(Eigen::Matrix4f pose, double time);
+
+    protected:
+        tf::StampedTransform transform_;
+        tf::TransformBroadcaster broadcaster_;
+    };
 }
 #endif

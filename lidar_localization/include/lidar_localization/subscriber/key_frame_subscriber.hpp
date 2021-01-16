@@ -16,21 +16,23 @@
 #include "lidar_localization/sensor_data/key_frame.hpp"
 
 namespace lidar_localization {
-class KeyFrameSubscriber {
-  public:
-    KeyFrameSubscriber(ros::NodeHandle& nh, std::string topic_name, size_t buff_size);
-    KeyFrameSubscriber() = default;
-    void ParseData(std::deque<KeyFrame>& key_frame_buff);
+    class KeyFrameSubscriber {
+    public:
+        KeyFrameSubscriber(ros::NodeHandle &nh, std::string topic_name, size_t buff_size);
 
-  private:
-    void msg_callback(const geometry_msgs::PoseWithCovarianceStampedConstPtr& key_frame_msg_ptr);
+        KeyFrameSubscriber() = default;
 
-  private:
-    ros::NodeHandle nh_;
-    ros::Subscriber subscriber_;
-    std::deque<KeyFrame> new_key_frame_;
+        void ParseData(std::deque<KeyFrame> &key_frame_buff);
 
-    std::mutex buff_mutex_; 
-};
+    private:
+        void msg_callback(const geometry_msgs::PoseWithCovarianceStampedConstPtr &key_frame_msg_ptr);
+
+    private:
+        ros::NodeHandle nh_;
+        ros::Subscriber subscriber_;
+        std::deque<KeyFrame> new_key_frame_;
+
+        std::mutex buff_mutex_;
+    };
 }
 #endif

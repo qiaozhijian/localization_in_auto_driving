@@ -36,7 +36,7 @@
 
 #include "Eigen/src/Core/util/MKL_support.h"
 
-namespace Eigen { 
+namespace Eigen {
 
 /** \internal Specialization for the data types supported by MKL */
 
@@ -83,15 +83,15 @@ ColPivHouseholderQR<Matrix<EIGTYPE, Dynamic, Dynamic, EIGCOLROW, Dynamic, Dynami
   return *this; \
 }
 
-EIGEN_MKL_QR_COLPIV(double,   double,        d, ColMajor, LAPACK_COL_MAJOR)
-EIGEN_MKL_QR_COLPIV(float,    float,         s, ColMajor, LAPACK_COL_MAJOR)
+EIGEN_MKL_QR_COLPIV(double, double, d, ColMajor, LAPACK_COL_MAJOR)
+EIGEN_MKL_QR_COLPIV(float, float, s, ColMajor, LAPACK_COL_MAJOR)
 EIGEN_MKL_QR_COLPIV(dcomplex, MKL_Complex16, z, ColMajor, LAPACK_COL_MAJOR)
-EIGEN_MKL_QR_COLPIV(scomplex, MKL_Complex8,  c, ColMajor, LAPACK_COL_MAJOR)
+EIGEN_MKL_QR_COLPIV(scomplex, MKL_Complex8, c, ColMajor, LAPACK_COL_MAJOR)
 
-EIGEN_MKL_QR_COLPIV(double,   double,        d, RowMajor, LAPACK_ROW_MAJOR)
-EIGEN_MKL_QR_COLPIV(float,    float,         s, RowMajor, LAPACK_ROW_MAJOR)
+EIGEN_MKL_QR_COLPIV(double, double, d, RowMajor, LAPACK_ROW_MAJOR)
+EIGEN_MKL_QR_COLPIV(float, float, s, RowMajor, LAPACK_ROW_MAJOR)
 EIGEN_MKL_QR_COLPIV(dcomplex, MKL_Complex16, z, RowMajor, LAPACK_ROW_MAJOR)
-EIGEN_MKL_QR_COLPIV(scomplex, MKL_Complex8,  c, RowMajor, LAPACK_ROW_MAJOR)
+EIGEN_MKL_QR_COLPIV(scomplex, MKL_Complex8, c, RowMajor, LAPACK_ROW_MAJOR)
 
 } // end namespace Eigen
 

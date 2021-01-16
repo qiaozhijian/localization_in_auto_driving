@@ -19,43 +19,48 @@
 #include "lidar_localization/mapping/back_end/back_end.hpp"
 
 namespace lidar_localization {
-class BackEndFlow {
-  public:
-    BackEndFlow(ros::NodeHandle& nh, std::string cloud_topic, std::string odom_topic);
+    class BackEndFlow {
+    public:
+        BackEndFlow(ros::NodeHandle &nh, std::string cloud_topic, std::string odom_topic);
 
-    bool Run();
+        bool Run();
 
-    bool ForceOptimize();
+        bool ForceOptimize();
 
-  private:
-    bool ReadData();
-    bool MaybeInsertLoopPose();
-    bool HasData();
-    bool ValidData();
-    bool UpdateBackEnd();
-    bool PublishData();
+    private:
+        bool ReadData();
 
-  private:
-    std::shared_ptr<CloudSubscriber> cloud_sub_ptr_;
-    std::shared_ptr<OdometrySubscriber> gnss_pose_sub_ptr_;
-    std::shared_ptr<OdometrySubscriber> laser_odom_sub_ptr_;
-    std::shared_ptr<LoopPoseSubscriber> loop_pose_sub_ptr_;
+        bool MaybeInsertLoopPose();
 
-    std::shared_ptr<OdometryPublisher> transformed_odom_pub_ptr_;
-    std::shared_ptr<KeyFramePublisher> key_frame_pub_ptr_;
-    std::shared_ptr<KeyFramePublisher> key_gnss_pub_ptr_;
-    std::shared_ptr<KeyFramesPublisher> key_frames_pub_ptr_;
-    std::shared_ptr<BackEnd> back_end_ptr_;
+        bool HasData();
 
-    std::deque<CloudData> cloud_data_buff_;
-    std::deque<PoseData> gnss_pose_data_buff_;
-    std::deque<PoseData> laser_odom_data_buff_;
-    std::deque<LoopPose> loop_pose_data_buff_;
+        bool ValidData();
 
-    PoseData current_gnss_pose_data_;
-    PoseData current_laser_odom_data_;
-    CloudData current_cloud_data_;
-};
+        bool UpdateBackEnd();
+
+        bool PublishData();
+
+    private:
+        std::shared_ptr<CloudSubscriber> cloud_sub_ptr_;
+        std::shared_ptr<OdometrySubscriber> gnss_pose_sub_ptr_;
+        std::shared_ptr<OdometrySubscriber> laser_odom_sub_ptr_;
+        std::shared_ptr<LoopPoseSubscriber> loop_pose_sub_ptr_;
+
+        std::shared_ptr<OdometryPublisher> transformed_odom_pub_ptr_;
+        std::shared_ptr<KeyFramePublisher> key_frame_pub_ptr_;
+        std::shared_ptr<KeyFramePublisher> key_gnss_pub_ptr_;
+        std::shared_ptr<KeyFramesPublisher> key_frames_pub_ptr_;
+        std::shared_ptr<BackEnd> back_end_ptr_;
+
+        std::deque<CloudData> cloud_data_buff_;
+        std::deque<PoseData> gnss_pose_data_buff_;
+        std::deque<PoseData> laser_odom_data_buff_;
+        std::deque<LoopPose> loop_pose_data_buff_;
+
+        PoseData current_gnss_pose_data_;
+        PoseData current_laser_odom_data_;
+        CloudData current_cloud_data_;
+    };
 }
 
 #endif

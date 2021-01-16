@@ -10,12 +10,12 @@
 #include "lidar_localization/sensor_data/cloud_data.hpp"
 
 namespace lidar_localization {
-class CloudFilterInterface {
-  public:
-    virtual ~CloudFilterInterface() = default;
+    class CloudFilterInterface {
+    public:
+        virtual ~CloudFilterInterface() = default;
 
-    virtual bool Filter(const CloudData::CLOUD_PTR& input_cloud_ptr, CloudData::CLOUD_PTR& filtered_cloud_ptr) = 0;
-};
+        virtual bool Filter(const CloudData::CLOUD_PTR &input_cloud_ptr, CloudData::CLOUD_PTR &filtered_cloud_ptr) = 0;
+    };
 }
 
 #endif

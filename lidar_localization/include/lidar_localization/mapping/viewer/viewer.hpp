@@ -16,57 +16,70 @@
 #include "lidar_localization/models/cloud_filter/voxel_filter.hpp"
 
 namespace lidar_localization {
-class Viewer {
-  public:
-    Viewer();
+    class Viewer {
+    public:
+        Viewer();
 
-    bool UpdateWithOptimizedKeyFrames(std::deque<KeyFrame>& optimized_key_frames);
-    bool UpdateWithNewKeyFrame(std::deque<KeyFrame>& new_key_frames,
-                               PoseData transformed_data,
-                               CloudData cloud_data);
+        bool UpdateWithOptimizedKeyFrames(std::deque<KeyFrame> &optimized_key_frames);
 
-    bool SaveMap();
-    Eigen::Matrix4f& GetCurrentPose();
-    CloudData::CLOUD_PTR& GetCurrentScan();
-    bool GetLocalMap(CloudData::CLOUD_PTR& local_map_ptr);
-    bool GetGlobalMap(CloudData::CLOUD_PTR& local_map_ptr);
-    bool HasNewLocalMap();
-    bool HasNewGlobalMap();
+        bool UpdateWithNewKeyFrame(std::deque<KeyFrame> &new_key_frames,
+                                   PoseData transformed_data,
+                                   CloudData cloud_data);
 
-  private:
-    bool InitWithConfig();
-    bool InitParam(const YAML::Node& config_node);
-    bool InitDataPath(const YAML::Node& config_node);
-    bool InitFilter(std::string filter_user, 
-                    std::shared_ptr<CloudFilterInterface>& filter_ptr, 
-                    const YAML::Node& config_node);
+        bool SaveMap();
 
-    bool OptimizeKeyFrames();
-    bool JointGlobalMap(CloudData::CLOUD_PTR& global_map_ptr);
-    bool JointLocalMap(CloudData::CLOUD_PTR& local_map_ptr);
-    bool JointCloudMap(const std::deque<KeyFrame>& key_frames, 
-                             CloudData::CLOUD_PTR& map_cloud_ptr);
+        Eigen::Matrix4f &GetCurrentPose();
 
-  private:
-    std::string data_path_ = "";
-    int local_frame_num_ = 20;
+        CloudData::CLOUD_PTR &GetCurrentScan();
 
-    std::string key_frames_path_ = "";
-    std::string map_path_ = "";
+        bool GetLocalMap(CloudData::CLOUD_PTR &local_map_ptr);
 
-    std::shared_ptr<CloudFilterInterface> frame_filter_ptr_;
-    std::shared_ptr<CloudFilterInterface> local_map_filter_ptr_;
-    std::shared_ptr<CloudFilterInterface> global_map_filter_ptr_;
+        bool GetGlobalMap(CloudData::CLOUD_PTR &local_map_ptr);
 
-    Eigen::Matrix4f pose_to_optimize_ = Eigen::Matrix4f::Identity();
-    PoseData optimized_odom_;
-    CloudData optimized_cloud_;
-    std::deque<KeyFrame> optimized_key_frames_;
-    std::deque<KeyFrame> all_key_frames_;
+        bool HasNewLocalMap();
 
-    bool has_new_global_map_ = false;
-    bool has_new_local_map_ = false;
-};
+        bool HasNewGlobalMap();
+
+    private:
+        bool InitWithConfig();
+
+        bool InitParam(const YAML::Node &config_node);
+
+        bool InitDataPath(const YAML::Node &config_node);
+
+        bool InitFilter(std::string filter_user,
+                        std::shared_ptr<CloudFilterInterface> &filter_ptr,
+                        const YAML::Node &config_node);
+
+        bool OptimizeKeyFrames();
+
+        bool JointGlobalMap(CloudData::CLOUD_PTR &global_map_ptr);
+
+        bool JointLocalMap(CloudData::CLOUD_PTR &local_map_ptr);
+
+        bool JointCloudMap(const std::deque<KeyFrame> &key_frames,
+                           CloudData::CLOUD_PTR &map_cloud_ptr);
+
+    private:
+        std::string data_path_ = "";
+        int local_frame_num_ = 20;
+
+        std::string key_frames_path_ = "";
+        std::string map_path_ = "";
+
+        std::shared_ptr<CloudFilterInterface> frame_filter_ptr_;
+        std::shared_ptr<CloudFilterInterface> local_map_filter_ptr_;
+        std::shared_ptr<CloudFilterInterface> global_map_filter_ptr_;
+
+        Eigen::Matrix4f pose_to_optimize_ = Eigen::Matrix4f::Identity();
+        PoseData optimized_odom_;
+        CloudData optimized_cloud_;
+        std::deque<KeyFrame> optimized_key_frames_;
+        std::deque<KeyFrame> all_key_frames_;
+
+        bool has_new_global_map_ = false;
+        bool has_new_local_map_ = false;
+    };
 }
 
 #endif

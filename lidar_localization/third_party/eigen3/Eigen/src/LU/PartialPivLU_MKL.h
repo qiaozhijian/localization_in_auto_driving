@@ -35,9 +35,9 @@
 
 #include "Eigen/src/Core/util/MKL_support.h"
 
-namespace Eigen { 
+namespace Eigen {
 
-namespace internal {
+    namespace internal {
 
 /** \internal Specialization for the data types supported by MKL */
 
@@ -73,12 +73,15 @@ struct partial_lu_impl<EIGTYPE, StorageOrder, lapack_int> \
   } \
 };
 
-EIGEN_MKL_LU_PARTPIV(double, double, d)
-EIGEN_MKL_LU_PARTPIV(float, float, s)
-EIGEN_MKL_LU_PARTPIV(dcomplex, MKL_Complex16, z)
-EIGEN_MKL_LU_PARTPIV(scomplex, MKL_Complex8, c)
+        EIGEN_MKL_LU_PARTPIV(double, double, d)
 
-} // end namespace internal
+        EIGEN_MKL_LU_PARTPIV(float, float, s)
+
+        EIGEN_MKL_LU_PARTPIV(dcomplex, MKL_Complex16, z)
+
+        EIGEN_MKL_LU_PARTPIV(scomplex, MKL_Complex8, c)
+
+    } // end namespace internal
 
 } // end namespace Eigen
 

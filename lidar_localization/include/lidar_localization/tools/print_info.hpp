@@ -12,9 +12,9 @@
 #include "pcl/common/eigen.h"
 
 namespace lidar_localization {
-class PrintInfo {
-  public:
-    static void PrintPose(std::string head, Eigen::Matrix4f pose);
-};
+    class PrintInfo {
+    public:
+        static void PrintPose(std::string head, Eigen::Matrix4f pose);
+    };
 }
 #endif

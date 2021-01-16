@@ -13,27 +13,29 @@
 #include <nav_msgs/Odometry.h>
 
 namespace lidar_localization {
-class OdometryPublisher {
-  public:
-    OdometryPublisher(ros::NodeHandle& nh, 
-                      std::string topic_name, 
-                      std::string base_frame_id,
-                      std::string child_frame_id,
-                      int buff_size);
-    OdometryPublisher() = default;
+    class OdometryPublisher {
+    public:
+        OdometryPublisher(ros::NodeHandle &nh,
+                          std::string topic_name,
+                          std::string base_frame_id,
+                          std::string child_frame_id,
+                          int buff_size);
 
-    void Publish(const Eigen::Matrix4f& transform_matrix, double time);
-    void Publish(const Eigen::Matrix4f& transform_matrix);
+        OdometryPublisher() = default;
 
-    bool HasSubscribers();
+        void Publish(const Eigen::Matrix4f &transform_matrix, double time);
 
-  private:
-    void PublishData(const Eigen::Matrix4f& transform_matrix, ros::Time time);
+        void Publish(const Eigen::Matrix4f &transform_matrix);
 
-  private:
-    ros::NodeHandle nh_;
-    ros::Publisher publisher_;
-    nav_msgs::Odometry odometry_;
-};
+        bool HasSubscribers();
+
+    private:
+        void PublishData(const Eigen::Matrix4f &transform_matrix, ros::Time time);
+
+    private:
+        ros::NodeHandle nh_;
+        ros::Publisher publisher_;
+        nav_msgs::Odometry odometry_;
+    };
 }
 #endif

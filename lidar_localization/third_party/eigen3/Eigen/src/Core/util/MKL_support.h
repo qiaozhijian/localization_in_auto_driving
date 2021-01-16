@@ -34,23 +34,23 @@
 #define EIGEN_MKL_SUPPORT_H
 
 #ifdef EIGEN_USE_MKL_ALL
-  #ifndef EIGEN_USE_BLAS
-    #define EIGEN_USE_BLAS
-  #endif
-  #ifndef EIGEN_USE_LAPACKE
-    #define EIGEN_USE_LAPACKE
-  #endif
-  #ifndef EIGEN_USE_MKL_VML
-    #define EIGEN_USE_MKL_VML
-  #endif
+#ifndef EIGEN_USE_BLAS
+#define EIGEN_USE_BLAS
+#endif
+#ifndef EIGEN_USE_LAPACKE
+#define EIGEN_USE_LAPACKE
+#endif
+#ifndef EIGEN_USE_MKL_VML
+#define EIGEN_USE_MKL_VML
+#endif
 #endif
 
 #ifdef EIGEN_USE_LAPACKE_STRICT
-  #define EIGEN_USE_LAPACKE
+#define EIGEN_USE_LAPACKE
 #endif
 
 #if defined(EIGEN_USE_BLAS) || defined(EIGEN_USE_LAPACKE) || defined(EIGEN_USE_MKL_VML)
-  #define EIGEN_USE_MKL
+#define EIGEN_USE_MKL
 #endif
 
 #if defined EIGEN_USE_MKL

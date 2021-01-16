@@ -16,18 +16,19 @@
 #include "lidar_localization/sensor_data/cloud_data.hpp"
 
 namespace lidar_localization {
-class DistortionAdjust {
-  public:
-    void SetMotionInfo(float scan_period, VelocityData velocity_data);
-    bool AdjustCloud(CloudData::CLOUD_PTR& input_cloud_ptr, CloudData::CLOUD_PTR& output_cloud_ptr);
+    class DistortionAdjust {
+    public:
+        void SetMotionInfo(float scan_period, VelocityData velocity_data);
 
-  private:
-    inline Eigen::Matrix3f UpdateMatrix(float real_time);
+        bool AdjustCloud(CloudData::CLOUD_PTR &input_cloud_ptr, CloudData::CLOUD_PTR &output_cloud_ptr);
 
-  private:
-    float scan_period_;
-    Eigen::Vector3f velocity_;
-    Eigen::Vector3f angular_rate_;
-};
+    private:
+        inline Eigen::Matrix3f UpdateMatrix(float real_time);
+
+    private:
+        float scan_period_;
+        Eigen::Vector3f velocity_;
+        Eigen::Vector3f angular_rate_;
+    };
 } // namespace lidar_slam
 #endif
